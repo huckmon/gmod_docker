@@ -4,5 +4,5 @@ chown -R gmod:gmod /data
 
 # run server file validation and install if needed
 
-exec "/start_server.sh"
+exec "/install_server.sh"
 
