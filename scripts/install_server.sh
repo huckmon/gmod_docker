@@ -31,10 +31,10 @@ fi
 
 if [ $mods_loaded == "true" ]; then
     echo "|--- Installing server and addons - steamcmd $install_cmd$mod_cmd ---|"
-    su arma --command="steamcmd $install_cmd$mod_cmd +quit"
+    su srcds_run "steamcmd $install_cmd$mod_cmd +quit"
 else
     echo "|--- Installing server - steamcmd $install_cmd ---|"
-    su arma --command="steamcmd $install_cmd +quit"
+    su srcds_run "steamcmd $install_cmd +quit"
 fi
 
 # run server
