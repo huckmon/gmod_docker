@@ -31,10 +31,10 @@ fi
 
 if [ $mods_loaded == "true" ]; then
     echo "|--- Installing server and addons - steamcmd $install_cmd$mod_cmd ---|"
-    su srcds_run "steamcmd $install_cmd$mod_cmd +quit"
+    su gmod --command"steamcmd $install_cmd$mod_cmd validate +quit"
 else
     echo "|--- Installing server - steamcmd $install_cmd ---|"
-    su srcds_run "steamcmd $install_cmd +quit"
+    su gmod --command"steamcmd $install_cmd validate +quit"
 fi
 
 # run server

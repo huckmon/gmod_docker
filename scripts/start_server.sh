@@ -47,8 +47,8 @@ fi
 # This needs editing to remove arma
 if [ $mods_loaded == "true" ]; then
     echo "|--- Starting Gmod server with addons - $start_cmd_prefix$mod_cmd"
-    exec su srcds_run "$start_cmd_prefix$ mod_cmd"
+    exec su gmod --command="$start_cmd_prefix$ mod_cmd"
 else
     echo "|--- Starting Gmod server - $start_cmd_prefix"
-    exec su srcds_run "$start_cmd_prefix"
+    exec su gmod --command="$start_cmd_prefix"
 fi
