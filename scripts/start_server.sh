@@ -28,8 +28,6 @@ if ["$WORKSHOP_PLAYLIST_ID" -ne "" ]; then
     start_cmd_prefix=$start_cmd_prefix + "+host_workshop_collection $WORKSHOP_PLAYLIST_ID"
 fi
 
-start_cmd_suffix="-noSound -netlog"
-
 echo "|--- checking if $(pwd)/modlist.txt exists ---|"
 if [ -f "modlist.txt" ]; then
     modfile_lines=`wc -l < $modfile`
@@ -48,9 +46,9 @@ fi
 
 # This needs editing to remove arma
 if [ $mods_loaded == "true" ]; then
-    echo "|--- Starting Gmod server with addons - $start_cmd_prefix$mod_cmd$start_cmd_suffix"
-    exec su srcds_run "$start_cmd_prefix$mod_cmd$start_cmd_suffix"
+    echo "|--- Starting Gmod server with addons - $start_cmd_prefix$mod_cmd"
+    exec su srcds_run "$start_cmd_prefix$mod_cmd"
 else
-    echo "|--- Starting Gmod server - $start_cmd_prefix$start_cmd_suffix"
-    exec su srcds_run "$start_cmd_prefix$start_cmd_suffix"
+    echo "|--- Starting Gmod server - $start_cmd_prefix"
+    exec su srcds_run "$start_cmd_prefix"
 fi
