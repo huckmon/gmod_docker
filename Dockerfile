@@ -3,6 +3,7 @@ FROM steamcmd/steamcmd:latest
 ENV STEAMUSER=anonymous
 ENV GAMEMODE=garrysmod
 ENV MAXPLAYERS=12
+ENV MAP=gm_flatgrass
 
 # Update and install needed tools
 RUN apt-get update && \
