@@ -18,28 +18,26 @@ start_cmd_prefix_small="${install_dir}$server_file -game $GAMEMODE +maxplayers $
 cd /data
 
 #check if a user to run the server has been listed
-if ["$AUTHKEY" -ne "" ]; then
+if [ ! -z "$AUTHKEY" ]; then
     start_cmd_prefix="$start_cmd_prefix_small +sv_setsteamaccount $AUTHKEY"
 else
     start_cmd_prefix="$start_cmd_prefix_small"
 fi
 
-if ["$WORKSHOP_PLAYLIST_ID" -ne "" ]; then
+echo "|--- checking if a workshop collection exists ---|"
+if [ ! -z "$WORKSHOP_PLAYLIST_ID" ]; then
     start_cmd_prefix=$start_cmd_prefix + "+host_workshop_collection $WORKSHOP_PLAYLIST_ID"
-fi
-
-echo "|--- checking if $(pwd)/modlist.txt exists ---|"
-if [ -f "modlist.txt" ]; then
-    modfile_lines=`wc -l < $modfile`
-    while [ $a -lt `expr $modfile_lines + 1` ]
-    do
-        current_line="$(sed -n ${a}p $modfile | grep -E -o '[0-9]+')"
-        mod_param="$mod_cmd $mod_prefix$current_line\""
-        mod_cmd=$mod_param
-        a=`expr $a + 1`
-    done
-    mods_loaded="true"
-    mod_cmd="${mod_cmd} "
+    #if [ -f "modlist.txt" ]; then
+    #    modfile_lines=`wc -l < $modfile`
+    #    while [ $a -lt `expr $modfile_lines + 1` ]
+    #    do
+    #        current_line="$(sed -n ${a}p $modfile | grep -E -o '[0-9]+')"
+    #        mod_param="$mod_cmd $mod_prefix$current_line\""
+    #        mod_cmd=$mod_param
+    #        a=`expr $a + 1`
+    #    done
+    #    mods_loaded="true"
+    #    mod_cmd="${mod_cmd} "
 else
     echo "|--- No modlist found, starting normally ---|"
 fi
